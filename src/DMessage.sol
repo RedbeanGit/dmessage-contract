@@ -26,4 +26,18 @@ contract DMessage {
 
         emit MessageSent(_content, msg.sender, block.timestamp);
     }
+
+    function getMessages(
+        uint256 _start,
+        uint256 _end
+    ) public view returns (Message[] memory) {
+        require(_start < _end, "Invalid range");
+        require(_end <= messages.length, "End index out of bounds");
+
+        Message[] memory result = new Message[](_end - _start);
+        for (uint256 i = _start; i < _end; i++) {
+            result[i - _start] = messages[i];
+        }
+        return result;
+    }
 }
