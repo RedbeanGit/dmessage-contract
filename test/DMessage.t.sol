@@ -38,4 +38,12 @@ contract DMessageTest is Test {
         vm.expectRevert("End index out of bounds");
         dMessage.getMessages(0, 3);
     }
+
+    function test_GetMessagesCount() public {
+        dMessage.sendMessage("Hello, world!");
+        dMessage.sendMessage("Hello, again!");
+
+        uint256 count = dMessage.getMessagesCount();
+        assertEq(count, 2);
+    }
 }

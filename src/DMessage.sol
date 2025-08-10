@@ -40,4 +40,8 @@ contract DMessage {
         }
         return result;
     }
+
+    function getMessagesCount() public view returns (uint256) {
+        return messages.length;
+    }
 }
